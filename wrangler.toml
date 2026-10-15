@@ -1,0 +1,28 @@
+# MentorBridge — Cloudflare Worker + static SPA.
+#
+# Local dev typically runs the Vite dev server for the UI and this Worker for
+# /api (see the `dev` script and the /api proxy in vite.config.ts). `wrangler
+# dev` also serves ./dist as static assets when it exists.
+name = "mentorbridge"
+main = "worker/index.ts"
+compatibility_date = "2026-10-01"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+# The Worker must see /api/* before the SPA fallback, so it runs first and
+# delegates static files to env.ASSETS.
+run_worker_first = true
+not_found_handling = "single-page-application"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "mentorbridge"
+# Placeholder for local `wrangler dev` (which uses a local SQLite file).
+# A real deployment id is supplied by the hosting platform's D1 binding.
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[vars]
+GEMINI_MODEL = "gemini-3.8-flash"
+GEMINI_MODEL_LITE = "gemini-3.5-flash-lite"
+GEMINI_EMBED_MODEL = "gemini-embedding-001"

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.local
+.DS_Store
+.env
+.env.*
+!.env.example
+vite.config.local.ts
+
+# Cloudflare / Workers
+.wrangler/
+.worker-build/
+deploy-out/
+.dev.vars
+
+# Exported archives (workspace deliverables, never part of the project)
+/*.zip
