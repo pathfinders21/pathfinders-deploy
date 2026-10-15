@@ -78,4 +78,7 @@ export default defineConfig({
       '/api': { target: 'http://127.0.0.1:8787', changeOrigin: false },
     },
   },
+  preview: {
+    allowedHosts: ["pathfinders-deploy.onrender.com"],
+  },
 });
